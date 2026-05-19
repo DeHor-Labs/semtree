@@ -22,7 +22,7 @@ def _load_gitignore(root: Path) -> pathspec.PathSpec | None:
         return None
     try:
         patterns = gitignore.read_text(errors="replace").splitlines()
-        return pathspec.PathSpec.from_lines("gitwildmatch", patterns)  # type: ignore
+        return pathspec.PathSpec.from_lines("gitignore", patterns)  # type: ignore
     except OSError:
         return None
 
