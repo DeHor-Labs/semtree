@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/semtree-semantic%20code%20trees-0d1117?style=for-the-badge&labelColor=0d1117&color=6e40c9" alt="semtree" height="48">
+  <img src="https://img.shields.io/badge/semtree-optimized%20context-0d1117?style=for-the-badge&labelColor=0d1117&color=6e40c9" alt="semtree" height="48">
 </p>
 
 <p align="center">
-  <strong>Semantic code trees for AI assistants</strong>
+  <strong>Semtree melhora o contexto de AI assistants</strong>
 </p>
 
 <p align="center">
@@ -24,7 +24,9 @@
 
 ---
 
-semtree indexes your codebase with tree-sitter, extracts symbols and docstrings across Python, JavaScript/TypeScript, Go, Rust, Java, C/C++, and more, and delivers token-optimized context to AI coding assistants. It exposes three MCP tools (`index_project`, `get_context`, `search_symbols`) that Claude Code, Cursor, Copilot, and Codex can call directly - and an intent classifier that selects the right retrieval strategy based on what you are trying to do.
+**Pare de colar arquivos inteiros no seu assistente de IA.** O Semtree usa tree-sitter para extrair apenas o que importa (assinaturas, docstrings, dependências) e entregar um contexto cirúrgico para Claude Code, Cursor, Copilot e Codex.
+
+Resultado prático: **Respostas mais rápidas, sugestões de código mais precisas e uma redução de até 87% no uso de tokens contextuais.** Ele expõe ferramentas MCP (`index_project`, `get_context`, `search_symbols`) para que seu assistente de IA favorite a qualidade do contexto em vez da quantidade.
 
 ---
 
