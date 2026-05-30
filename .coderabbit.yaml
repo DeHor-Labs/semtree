@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
-# semtree - Python library para árvores semânticas
+# mcp-fiscal-brasil - Python MCP server
 
 language: "pt-BR"
 tone_instructions: "Assertivo. Segurança de API, injeção, performance Python. pt-BR, hífens."
@@ -31,22 +31,15 @@ reviews:
         - Credenciais sempre via os.environ, nunca hardcoded.
         - Async/await correto - sem bloqueio de event loop.
 
-    - path: "src/semtree/**"
+    - path: "src/mcp_fiscal_brasil/**"
       instructions: |
-        Núcleo semtree. Verificar:
-        - API pública com docstrings e type hints completos.
-        - Algoritmos de árvore com invariantes documentados e assertions defensivas.
-        - Sem mutação silenciosa de estruturas de entrada (imutabilidade preferida).
-        - Erros levantados como exceções tipadas (não retornar None silencioso em falha).
-        - Performance: evitar O(n^2) em operações sobre árvores grandes sem documentar trade-off.
-
-    - path: "tests/**"
-      instructions: |
-        Testes. Verificar:
-        - Cobertura de casos de borda (árvore vazia, nó único, ciclos se aplicável).
-        - Sem fixtures com side effects que vazam entre testes.
-        - Assertions com mensagens descritivas.
-        - Sem testes que dependem de ordem de execução.
+        MCP server. Verificar:
+        - Tools com descrições claras (expostas ao LLM).
+        - Inputs de tool validados antes de processar (nunca confiar em input do LLM diretamente).
+        - Prompt injection: se o tool aceita texto livre, verificar se pode ser usado para
+          exfiltrar dados ou executar ações não autorizadas.
+        - Rate limiting ou circuit breaker em chamadas a APIs externas (Receita Federal, etc).
+        - Erros retornados como mensagem de erro MCP, não como exception não tratada.
 
     - path: ".github/workflows/**"
       instructions: |
@@ -56,8 +49,6 @@ reviews:
     - "!**/__pycache__/**"
     - "!**/*.pyc"
     - "!**/.pytest_cache/**"
-    - "!**/.mypy_cache/**"
-    - "!**/.ruff_cache/**"
     - "!**/dist/**"
     - "!**/build/**"
     - "!**/*.egg-info/**"
@@ -66,19 +57,19 @@ reviews:
     - "!uv.lock"
     - "!.coderabbit.yaml"
 
-tools:
-  ruff:
-    enabled: true
-  flake8:
-    enabled: true
-  semgrep:
-    enabled: true
-  gitleaks:
-    enabled: true
-  presidio:
-    enabled: true
-  markdownlint:
-    enabled: true
+  tools:
+    ruff:
+      enabled: true
+    flake8:
+      enabled: true
+    semgrep:
+      enabled: true
+    gitleaks:
+      enabled: true
+    presidio:
+      enabled: true
+    markdownlint:
+      enabled: true
 
 knowledge_base:
   web_search:
