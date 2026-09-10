@@ -8,8 +8,8 @@ Supports --dry-run to preview changes without writing.
 from __future__ import annotations
 
 import json
-import shlex
 import os
+import shlex
 import shutil
 import sys
 import tempfile
