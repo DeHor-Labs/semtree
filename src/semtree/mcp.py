@@ -52,7 +52,9 @@ def _build_context_request(
 
         return build_context(conn, query, token_budget, root, force_level=level)
     finally:
-        conn.close()
+        close = getattr(conn, "close", None)
+        if callable(close):
+            close()
 
 
 def serve() -> None:
