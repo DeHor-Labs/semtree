@@ -8,6 +8,7 @@ Supports --dry-run to preview changes without writing.
 from __future__ import annotations
 
 import json
+import shlex
 import os
 import shutil
 import sys
@@ -167,7 +168,7 @@ def _setup_copilot(root: Path, dry_run: bool) -> dict[str, str]:
     vscode_dir = root / ".vscode"
     settings_json = vscode_dir / "settings.json"
 
-    semtree_bin = shutil.which("semtree") or "semtree"
+    semtree_bin = shlex.quote(shutil.which("semtree") or "semtree")
     copilot_key = "github.copilot.chat.codeGeneration.instructions"
     new_instruction = {
         "text": f'When given a task, first run: {semtree_bin} context "${{input}}" to load structural context.'
