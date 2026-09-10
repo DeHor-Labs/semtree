@@ -2,7 +2,8 @@
 
 Each level produces progressively richer context:
 
-  L0 - Symbol names + kinds per file (compact outline)
+  L0 - Symbol names + kinds per file (compact outline). When `files` and
+       `root` are also provided, L0 returns `format_file_tree` instead.
   L1 - Symbol names + kinds per file (outline)
   L2 - L1 + signatures + first line of docstring (default)
   L3 - L2 + full docstrings + git context
@@ -114,7 +115,12 @@ def format_by_level(
     files: Sequence[FileRecord] | None = None,
     root: Path | None = None,
 ) -> str:
-    """Dispatch to the appropriate level formatter."""
+    """Dispatch to the appropriate level formatter.
+
+    At level 0, when both `files` and `root` are provided, returns a compact
+    file tree via `format_file_tree`. Otherwise level 0 falls back to L1-style
+    symbol names and kinds.
+    """
     if level == 0:
         if files and root:
             return format_file_tree(files, root)

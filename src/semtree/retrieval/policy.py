@@ -26,7 +26,8 @@ class RetrievalPolicy:
     # Reserved policy flag; level 3 controls current git metadata formatting
     include_git_context: bool = False
 
-    # Context level: 0/1=names and kinds, 2=signatures+docstrings, 3=full
+    # Context level: 0/1=names and kinds (L0 uses file tree when files+root
+    # are supplied to format_by_level), 2=signatures+docstrings, 3=full
     context_level: int = 2
 
     # Token budget fraction for retrieved symbols (0.0-1.0)

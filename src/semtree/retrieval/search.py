@@ -16,7 +16,7 @@ from ..db.store import SymbolRecord, fts_search, get_symbols_by_name
 class SearchResult:
     symbol: SymbolRecord
     score: float  # higher is better; FTS rank is negated to positive
-    source: str  # "fts" | "exact" | "prefix"
+    source: str  # "fts" | "exact" | "prefix" | "file"
 
 
 def search(
@@ -113,4 +113,4 @@ def search_by_file(
     ).fetchall()
     from ..db.store import _row_to_symbol
 
-    return [SearchResult(_row_to_symbol(r), score=2.0, source="fts") for r in rows]
+    return [SearchResult(_row_to_symbol(r), score=2.0, source="file") for r in rows]
