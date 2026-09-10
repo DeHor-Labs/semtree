@@ -39,7 +39,7 @@ def _write_json_atomically(path: Path, value: dict) -> bool:
         os.replace(temporary_path, path)
         temporary_path = None
         return True
-    except OSError:
+    except (OSError, TypeError, ValueError):
         return False
     finally:
         if temporary_path is not None:

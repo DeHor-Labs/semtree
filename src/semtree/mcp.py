@@ -45,12 +45,14 @@ def _build_context_request(
     """Build context for an MCP request while preserving an explicit level 0."""
     root = _get_root()
     conn = _open_db(root)
+    try:
+        if file:
+            detail_level = level if level is not None else 2
+            return build_context_for_file(conn, file, token_budget, detail_level)
 
-    if file:
-        detail_level = level if level is not None else 2
-        return build_context_for_file(conn, file, token_budget, detail_level)
-
-    return build_context(conn, query, token_budget, root, force_level=level)
+        return build_context(conn, query, token_budget, root, force_level=level)
+    finally:
+        conn.close()
 
 
 def serve() -> None:
